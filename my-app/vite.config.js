@@ -8,4 +8,11 @@ import styled from "styled-components";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), vitePluginImp.default()],
+  optimizeDeps: {
+    include: [
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/react-fontawesome",
+    ],
+  },
 });

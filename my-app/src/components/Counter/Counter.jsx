@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Counter = () => {
   const [count, setCount] = useState(0);
@@ -13,14 +13,30 @@ const Counter = () => {
   const handleReset = () => {
     setCount(0);
   };
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
   return (
-    <div className="main">
-      <div className="count">{count}</div>
-      <div className="card">
-        <button onClick={handleIncrease}>Increase(+)</button>
-        <button onClick={handleReset}>Reset</button>
-        <button onClick={handleDecrease}>Decrease (-)</button>
-      </div>
+    <div className="p-5 flex gap-x-4 items-center ">
+      <div className="text-2xl font-bold ">{count}</div>
+      <button
+        onClick={handleIncrease}
+        className="inline-block p-3 bg-green-400 text-white"
+      >
+        Increase(+)
+      </button>
+      <button
+        onClick={handleReset}
+        className="inline-block p-3 bg-green-400 text-white"
+      >
+        Reset
+      </button>
+      <button
+        onClick={handleDecrease}
+        className="inline-block p-3 bg-green-400 text-white"
+      >
+        Decrease (-)
+      </button>
     </div>
   );
 };

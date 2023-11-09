@@ -12,9 +12,16 @@ import HackerNew from "./components/news/HackerNew";
 import { useState } from "react";
 import { useEffect } from "react";
 import StopWatch from "./components/stopWatch/StopWatch";
-import Input from "./Input";
+import Input from "./components/Form/Input";
 import TextAreaAutoResize from "./TextAreaAutoResize";
 import Dropdown from "./Dropdown";
+import Blog from "./components/Blogs/Blog";
+import SideBarMenu from "./SideBarMenu";
+import useClickOutSide from "./hooks/useClickOutSide";
+import Movies from "./components/Movies";
+import SignUp from "./components/Form/SignUp";
+import SignUpV2 from "./components/Form/SignUpV2";
+import SignUpFormFinal from "./components/Form/SignUpFormFinal";
 // import Photos from "./components/photo/Photos";
 // import Toggle from "./components/state/Toggle";
 // import YoutubeList from "./components/youtube/YoutubeList";
@@ -28,22 +35,32 @@ import Dropdown from "./Dropdown";
 //   orange: "#ffa400",
 // };
 function App() {
+  // const [show, setShow] = useState(false);
+  useClickOutSide("button");
   return (
-    // children component
+    // children componentl
     // <ThemeProvider theme={theme}>
     // </ThemeProvider>
 
     <div>
-      {/* <GlobalStyle></GlobalStyle> */}
-      {/* <CardList>
-        <CardTaiwind primary fontSize="text-2xl"></CardTaiwind>
-      </CardList> */}
-      {/* <Photos></Photos> */}
-      {/* <HackerNew></HackerNew> */}
-      {/* <StopWatch></StopWatch> */}
+      {/* <button
+        onClick={() => {
+          setShow(true);
+        }}
+        className="inline-block m-3 p-3 rounded-lg text-white bg-green-400"
+      >
+        Show-Menu
+      </button>
+
       <div className="p-5">
         <Dropdown></Dropdown>
       </div>
+      <SideBarMenu show={show} ref={nodeRef}></SideBarMenu> */}
+      {/* <Input></Input> */}
+      {/* <Movies></Movies> */}
+      {/* <SignUp></SignUp> */}
+      {/* <SignUpV2></SignUpV2> */}
+      <SignUpFormFinal></SignUpFormFinal>
     </div>
   );
 }

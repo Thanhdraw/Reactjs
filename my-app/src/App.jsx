@@ -22,6 +22,7 @@ import Movies from "./components/Movies";
 import SignUp from "./components/Form/SignUp";
 import SignUpV2 from "./components/Form/SignUpV2";
 import SignUpFormFinal from "./components/Form/SignUpFormFinal";
+import SignUpHook from "./components/Form/SignUpHook";
 // import Photos from "./components/photo/Photos";
 // import Toggle from "./components/state/Toggle";
 // import YoutubeList from "./components/youtube/YoutubeList";
@@ -59,8 +60,9 @@ function App() {
       {/* <Input></Input> */}
       {/* <Movies></Movies> */}
       {/* <SignUp></SignUp> */}
+      <SignUpHook></SignUpHook>
       {/* <SignUpV2></SignUpV2> */}
-      <SignUpFormFinal></SignUpFormFinal>
+      
     </div>
   );
 }

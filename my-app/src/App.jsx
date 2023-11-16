@@ -62,7 +62,6 @@ function App() {
       {/* <SignUp></SignUp> */}
       <SignUpHook></SignUpHook>
       {/* <SignUpV2></SignUpV2> */}
-      
     </div>
   );
 }

@@ -9,7 +9,13 @@ const RadioHook = ({ control, ...props }) => {
   });
   return (
     <label className="cursor-pointer custom-radio">
-      <input type="radio" {...field} value={props.values} className="hidden" />
+      <input
+        type="radio"
+        {...field}
+        value={props.values}
+        className="hidden"
+        checked={props.checked}
+      />
       <div className="w-full h-full bg-white rounded-full"></div>
     </label>
   );

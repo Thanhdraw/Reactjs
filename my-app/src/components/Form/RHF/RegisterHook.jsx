@@ -23,6 +23,12 @@ const schema = yup
           "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number",
       })
       .required(),
+    gender: yup
+      .string()
+      .required("Please select your gender")
+      .oneOf(["male", "female"], "you can only select Male or Female"),
+    job: yup.string().required("Please select your job"),
+    terms: yup.boolean().required(),
   })
   .required();
 
@@ -50,16 +56,39 @@ const RegisterHook = () => {
     handleSubmit,
     setValue,
     getValues,
+    reset,
+    watch,
     control,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      gender: "male",
+    },
   });
   console.log("errors", errors);
 
   const onSubmitHandler = (values) => {
-    console.log(values);
+    if (!isValid) return;
+    // console.log(JSON.stringify(values));
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+        console.log(values);
+        reset({
+          username: "",
+          email: "",
+          password: "",
+          gender: "male",
+          job: "",
+          terms: false,
+        });
+      }, 3000);
+    });
   };
+  const watchGender = watch("gender");
+  console.log(watchGender);
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
@@ -115,6 +144,7 @@ const RegisterHook = () => {
               control={control}
               name="gender"
               values="male"
+              checked={watchGender === "male"}
             ></RadioHook>
             <span>Male</span>
           </div>
@@ -127,6 +157,9 @@ const RegisterHook = () => {
             <span>Female</span>
           </div>
         </div>
+        {errors.gender && (
+          <p className="text-red-500 text-sm">{errors.gender?.message}</p>
+        )}
       </div>
       <div className="flex flex-col gap-3 mb-5">
         <label className="cursor-pointer">Are you</label>
@@ -135,9 +168,12 @@ const RegisterHook = () => {
           setValue={setValue}
           name="job"
           data={dropdownData}
-          dropDownLabel="Please select"
+          dropDownLabel={isSubmitSuccessful ? "Please select" : "Please select"}
         ></DropDownHook>
-        {/* center@A0demo */}
+        {errors.job && (
+          <p className="text-red-500 text-sm">{errors.job?.message}</p>
+        )}
+        {/**/}
       </div>
       {/* checkbox */}
       <div className="">
@@ -146,9 +182,21 @@ const RegisterHook = () => {
           control={control}
           text="I accept the terms and conditions"
         ></CheckboxHook>
+        {errors.terms && (
+          <p className="text-red-500 text-sm">{errors.terms?.message}</p>
+        )}
       </div>
-      <button className="w-full p-5 bg-blue-500 text-white rounded-lg mt-5 font-semibold">
-        Submnit
+      <button
+        className={`w-full p-5 bg-blue-500 text-white rounded-lg mt-5 font-semibold ${
+          isSubmitting ? "opacity-50" : ""
+        }`}
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <div className="w-5 h-5 mx-auto border-2 border-t-2 border-white rounded-full border-t-transparent animate-spin"></div>
+        ) : (
+          "Submit"
+        )}
       </button>
     </form>
   );
